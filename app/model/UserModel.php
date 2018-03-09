@@ -16,6 +16,9 @@ class UserModel extends BaseModel
     {
         /** TODO */
 
+        $rows = $database->fetchAll('SELECT * FROM `user`');
+
+        return $rows;
     }
 
     /**
@@ -25,6 +28,7 @@ class UserModel extends BaseModel
     public function getUser($id)
     {
         /** TODO */
+        $rows = $database->fetch('SELECT * FROM `user` WHERE `user.id  = ?`', $id);
 
     }
 
@@ -36,7 +40,23 @@ class UserModel extends BaseModel
     public function insertUser($values)
     {
         /** TODO */
+        $rows = $database->query('INSERT INTO `user` ?', ['id'
+            , 'surname'
+            , 'firstname'
+            , 'registered'
+            , 'is_admin' 
+    ], ['surname' => $surname,
+        'firstname' => $surname, 
+        'registered' => $registered,
+        'is_admin' => $auth]
 
+
+         
+    );
+        var_dump($rows);
+        $id = $database->getInsertId();
+
+        return $rows;
     }
 
     /**
